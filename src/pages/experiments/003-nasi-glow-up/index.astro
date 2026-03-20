@@ -1,0 +1,16 @@
+---
+export const prerender = true;
+import ExperimentLayout from '../../../layouts/ExperimentLayout.astro';
+// import NasiGlowUp from '../../../../experiments/003-nasi-glow-up/src/NasiGlowUp';
+
+const status = 'in-progress';
+---
+
+<ExperimentLayout experimentId="003" title="NASI Glow-Up" status={status}>
+  <div class="flex justify-center">
+    <div class="w-[390px] rounded-2xl border bg-white p-4 shadow-sm">
+      <p class="text-center text-sm text-gray-400">Component not yet implemented.</p>
+      <p class="mt-1 text-center text-xs text-gray-300">See experiments/003-nasi-glow-up/</p>
+    </div>
+  </div>
+</ExperimentLayout>
