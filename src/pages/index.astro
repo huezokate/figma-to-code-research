@@ -1,0 +1,43 @@
+---
+// Scan for experiment pages automatically
+const experimentPages = await Astro.glob('../../experiments/*/page.astro');
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Figma → Code Research</title>
+  </head>
+  <body class="min-h-screen bg-gray-50">
+    <header class="border-b bg-white px-6 py-8">
+      <div class="mx-auto max-w-5xl">
+        <h1 class="text-2xl font-bold">Figma → Code Research</h1>
+        <p class="mt-1 text-gray-500">A structured sprint to develop a repeatable methodology for Figma-to-component work.</p>
+      </div>
+    </header>
+
+    <main class="mx-auto max-w-5xl px-6 py-10">
+      {experimentPages.length === 0 ? (
+        <div class="rounded-lg border border-dashed border-gray-300 p-12 text-center">
+          <p class="text-gray-400">No experiments yet.</p>
+          <p class="mt-2 text-sm text-gray-400">
+            Run <code class="font-mono">./scripts/new-experiment.sh 1 component-name</code> to scaffold one.
+          </p>
+        </div>
+      ) : (
+        <div class="grid gap-4">
+          {experimentPages.map((exp) => (
+            <a
+              href={exp.url}
+              class="rounded-lg border bg-white p-6 shadow-sm hover:shadow-md transition-shadow"
+            >
+              <span class="font-mono text-sm text-gray-500">{exp.url}</span>
+            </a>
+          ))}
+        </div>
+      )}
+    </main>
+  </body>
+</html>

@@ -1,0 +1,44 @@
+---
+export interface Props {
+  experimentId: string;
+  title: string;
+  status?: 'pass' | 'partial' | 'miss' | 'in-progress';
+}
+
+const { experimentId, title, status = 'in-progress' } = Astro.props;
+
+const statusColors = {
+  pass: 'bg-green-100 text-green-800',
+  partial: 'bg-yellow-100 text-yellow-800',
+  miss: 'bg-red-100 text-red-800',
+  'in-progress': 'bg-blue-100 text-blue-800',
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{experimentId}: {title}</title>
+  </head>
+  <body class="min-h-screen bg-gray-50">
+    <header class="border-b bg-white px-6 py-4">
+      <div class="mx-auto max-w-5xl flex items-center justify-between">
+        <div class="flex items-center gap-4">
+          <a href="/" class="text-sm text-gray-500 hover:text-gray-900">← All experiments</a>
+          <span class="text-gray-300">|</span>
+          <span class="font-mono text-sm text-gray-600">{experimentId}</span>
+          <h1 class="text-lg font-semibold">{title}</h1>
+        </div>
+        <span class={`rounded-full px-3 py-1 text-xs font-medium ${statusColors[status]}`}>
+          {status}
+        </span>
+      </div>
+    </header>
+
+    <main class="mx-auto max-w-5xl px-6 py-10">
+      <slot />
+    </main>
+  </body>
+</html>
