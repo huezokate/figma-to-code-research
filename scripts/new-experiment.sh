@@ -3,9 +3,10 @@
 # Example: ./scripts/new-experiment.sh 1 hero-section
 #
 # Creates:
-#   experiments/001-hero-section/       — experiment output dir
-#   docs/active/tickets/T-001-01.md    — Lisa ticket for this experiment
-#   docs/active/stories/S-001.md       — Lisa story for this experiment
+#   experiments/001-hero-section/                    — data: brief, figma exports, component src, retro
+#   src/pages/experiments/001-hero-section/index.astro — the actual Astro route
+#   docs/active/tickets/T-001-01.md                  — Lisa ticket
+#   docs/active/stories/S-001.md                     — Lisa story
 
 set -e
 
@@ -19,13 +20,14 @@ NAME="$2"
 STORY_ID="S-${NUM}"
 TICKET_ID="T-${NUM}-01"
 EXP_DIR="experiments/${NUM}-${NAME}"
+PAGE_DIR="src/pages/experiments/${NUM}-${NAME}"
 
 if [ -d "$EXP_DIR" ]; then
   echo "Error: $EXP_DIR already exists"
   exit 1
 fi
 
-# --- Experiment directory ---
+# --- Experiment data directory ---
 mkdir -p "${EXP_DIR}/figma" "${EXP_DIR}/src"
 
 cat > "${EXP_DIR}/BRIEF.md" << EOF
@@ -60,7 +62,7 @@ cat > "${EXP_DIR}/BRIEF.md" << EOF
 EOF
 
 cat > "${EXP_DIR}/RETRO.md" << EOF
-# Retro: ${name}
+# Retro: ${NAME}
 
 ## Result
 [Pass / Partial / Miss]
@@ -81,10 +83,15 @@ cat > "${EXP_DIR}/RETRO.md" << EOF
 [If a reusable insight emerged, name it here and confirm it's in techniques/.]
 EOF
 
-cat > "${EXP_DIR}/page.astro" << EOF
+# --- Astro page (actual route: /experiments/NNN-name/) ---
+mkdir -p "${PAGE_DIR}"
+
+cat > "${PAGE_DIR}/index.astro" << EOF
 ---
-import ExperimentLayout from '../../src/layouts/ExperimentLayout.astro';
-// import YourComponent from './src/YourComponent';
+export const prerender = true;
+
+import ExperimentLayout from '../../../layouts/ExperimentLayout.astro';
+// import YourComponent from '../../../../experiments/${NUM}-${NAME}/src/YourComponent';
 
 const status = 'in-progress'; // 'pass' | 'partial' | 'miss' | 'in-progress'
 ---
@@ -142,17 +149,18 @@ Implement the **${NAME}** component from its Figma design.
 
 Full brief, Figma exports, and acceptance criteria are in \`experiments/${NUM}-${NAME}/BRIEF.md\`.
 
-Output the component to \`experiments/${NUM}-${NAME}/src/\` and wire it into \`experiments/${NUM}-${NAME}/page.astro\`.
+Output the component to \`experiments/${NUM}-${NAME}/src/\` and wire it into \`src/pages/experiments/${NUM}-${NAME}/index.astro\`.
 
 ## Acceptance Criteria
 
 - [ ] Component renders correctly at the specified viewport widths
 - [ ] Spacing, typography, and colors match the Figma design as described in BRIEF.md
-- [ ] Page at \`/experiments/${NUM}-${NAME}\` shows the component
+- [ ] Page at \`/experiments/${NUM}-${NAME}/\` shows the component
 EOF
 
 echo "Created:"
 echo "  ${EXP_DIR}/"
+echo "  ${PAGE_DIR}/index.astro"
 echo "  docs/active/stories/${STORY_ID}.md"
 echo "  docs/active/tickets/${TICKET_ID}.md"
 echo ""
