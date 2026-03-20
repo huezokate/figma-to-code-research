@@ -1,10 +1,13 @@
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
-import tailwind from '@astrojs/tailwind';
 import cloudflare from '@astrojs/cloudflare';
+import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-  output: 'hybrid',
+  output: 'server',
   adapter: cloudflare(),
-  integrations: [react(), tailwind()],
+  integrations: [react()],
+  vite: {
+    plugins: [tailwindcss()],
+  },
 });

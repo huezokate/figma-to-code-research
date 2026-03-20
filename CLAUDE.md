@@ -12,10 +12,10 @@ When a session ends, append a one-line entry to the Session Log table in `docs/R
 
 ## Stack
 
-- **Astro 4** + **React 18** + **TypeScript**
-- **Tailwind CSS** (utility-first; use the spacing scale, not arbitrary values)
+- **Astro 6** + **React 19** + **TypeScript 5**
+- **Tailwind CSS v4** (utility-first; use the spacing scale, not arbitrary values; configured via `src/styles/global.css`)
 - `npm run dev` — dev server at localhost:4321
-- `npm run build` — production build
+- `npm run build` — production build (output: server, adapter: Cloudflare)
 
 ## Source Layout
 
