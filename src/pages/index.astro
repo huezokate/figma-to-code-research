@@ -1,5 +1,6 @@
 ---
-// Scan for experiment pages automatically
+export const prerender = true;
+
 const experimentPages = await Astro.glob('../../experiments/*/page.astro');
 ---
 
@@ -12,9 +13,14 @@ const experimentPages = await Astro.glob('../../experiments/*/page.astro');
   </head>
   <body class="min-h-screen bg-gray-50">
     <header class="border-b bg-white px-6 py-8">
-      <div class="mx-auto max-w-5xl">
-        <h1 class="text-2xl font-bold">Figma → Code Research</h1>
-        <p class="mt-1 text-gray-500">A structured sprint to develop a repeatable methodology for Figma-to-component work.</p>
+      <div class="mx-auto max-w-5xl flex items-start justify-between">
+        <div>
+          <h1 class="text-2xl font-bold">Figma → Code Research</h1>
+          <p class="mt-1 text-gray-500">A structured sprint to develop a repeatable methodology for Figma-to-component work.</p>
+        </div>
+        <a href="/roadmap" class="mt-1 text-sm font-medium text-gray-600 hover:text-gray-900 underline underline-offset-2">
+          Roadmap →
+        </a>
       </div>
     </header>
 

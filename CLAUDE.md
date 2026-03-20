@@ -4,6 +4,12 @@
 
 figma-to-code-research — A structured research sprint to develop a repeatable methodology for turning Figma designs into pixel-accurate React components. Each experiment is a Lisa ticket that takes a Figma design through the full RDSPI cycle to produce a working component.
 
+## Roadmap
+
+**Read `docs/ROADMAP.md` at the start of every session.** It is the current state of the research: active experiments, key findings so far, what's up next, and the session log. It is also rendered on the site at `/roadmap`.
+
+When a session ends, append a one-line entry to the Session Log table in `docs/ROADMAP.md` describing what happened. Keep the Experiments table and Key Findings current as work completes.
+
 ## Stack
 
 - **Astro 4** + **React 18** + **TypeScript**
