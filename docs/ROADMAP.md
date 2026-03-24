@@ -6,10 +6,10 @@
 
 ## Current Status
 
-**Phase**: Active — Wave 1 running
+**Phase**: Complete — Wave 1 done, retros written, techniques extracted
 **Version**: 0.2.0
 **Sprint start**: 2026-03-20
-**Focus**: NASI onboarding flow PoC — 6 screens from a FigJam lo-fi board, pulled via Figma MCP and implemented as Astro + React components. T-001-01 and T-001-02 are in progress.
+**Focus**: NASI onboarding flow PoC — all 6 screens implemented, all retros written, 3 techniques extracted. Synthesis document up next.
 
 ---
 
@@ -29,10 +29,10 @@
 |----|-----------|-------------|--------|-------------------|---------------------|
 | 001 | NASI Mode Picker (Screen 1) | T-001-01 | complete | Pass | — |
 | 002 | NASI App Connect (Screen 2) | T-001-02 | complete | Pass | ModeTabBar reusable component pattern |
-| 003 | NASI Glow-Up (Screen 3) | T-002-01 | queued | — | — |
-| 004 | NASI Sprite Dashboard (Screen 4) | T-002-02 | queued | — | — |
-| 005 | NASI Shell Dashboard (Screen 5) | T-002-03 | queued | — | — |
-| 006 | NASI Loom Dashboard (Screen 6) | T-002-04 | queued | — | — |
+| 003 | NASI Glow-Up (Screen 3) | T-002-01 | complete | Pass | — |
+| 004 | NASI Sprite Dashboard (Screen 4) | T-002-02 | complete | Pass | chaos-grid-col-span |
+| 005 | NASI Shell Dashboard (Screen 5) | T-002-03 | complete | Pass | mode-personality-palette-density |
+| 006 | NASI Loom Dashboard (Screen 6) | T-002-04 | complete | Pass | figjam-shape-type-semantics |
 
 *Status: `in-progress` / `complete` / `archived`. Update after each retro.*
 
@@ -55,7 +55,13 @@ The 6-screen flow: Mode Picker → App Connect → Glow-Up Transition → Sprite
 
 *Findings emerge from retros. Add here when a pattern appears more than once or has a large effect.*
 
-*None yet — first wave in progress.*
+1. **Semantic naming drives layout** — Mode names ("Chaos Curated" vs "Chaos Toned Down") were sufficient to produce visually distinct output (dense chaos grid vs. calm single-column) without explicit layout specs. The name is the design intent.
+
+2. **FigJam shape type names are semantic** — `MANUAL_INPUT`, `INTERNAL_STORAGE`, and `DOCUMENT_SINGLE` reliably predicted UI section role (input area, saved list, project header). More useful than x/y coordinates for implementation decisions.
+
+3. **~90% invented screens can still pass** — Glow-Up (Screen 3) was nearly all invented from a single ellipse shape. Strong mood descriptors ("transformative, intimate, glowing") compensated for absent structural data. The brief's tone matters as much as its structure.
+
+4. **FigJam lo-fi is sufficient for structure; insufficient for visual polish** — Layout decisions (column count, section order, component type) were accurately derived from lo-fi across all 6 screens. Colors, spacing, font sizes, and animation parameters were always guessed.
 
 ---
 
@@ -63,7 +69,9 @@ The 6-screen flow: Mode Picker → App Connect → Glow-Up Transition → Sprite
 
 | File | Summary |
 |------|---------|
-| — | No techniques yet |
+| [chaos-grid-col-span.md](../techniques/chaos-grid-col-span.md) | Editorial chaos grid via `col-span-2` alternation |
+| [mode-personality-palette-density.md](../techniques/mode-personality-palette-density.md) | Express mode personality through palette + layout density, same structure |
+| [figjam-shape-type-semantics.md](../techniques/figjam-shape-type-semantics.md) | FigJam shape type names predict UI section role |
 
 *See `techniques/README.md` for the full index.*
 
@@ -71,19 +79,19 @@ The 6-screen flow: Mode Picker → App Connect → Glow-Up Transition → Sprite
 
 ## Up Next
 
-- [ ] T-001-01 and T-001-02 complete → write retros for experiments 001 and 002
-- [ ] Update experiment status in this table after each retro
-- [ ] T-002-01 and T-002-02 unlock after S-001 completes (parallel)
-- [ ] After wave 2: first technique extraction from retro patterns
+- [x] Write retros for experiments 003–006
+- [x] First technique extraction from retro patterns across all 6 screens
+- [x] Update Pass/Partial/Miss column after visual review of each screen
+- [ ] Synthesis document: what did the FigJam lo-fi MCP read enable vs. what had to be inferred?
 
 ---
 
 ## Open Questions
 
-- Does the FigJam `get_figjam` MCP read provide enough to write accurate BRIEFs, or do we always need the hi-fi design file too?
-- Do FigJam shape type names (`MANUAL_INPUT`, `DOCUMENT_SINGLE`, `INTERNAL_STORAGE`) give useful semantic hints to the implementing agent?
-- Does "Chaos Curated" vs "Chaos Toned Down" as a descriptor produce a visible design difference in output?
-- What information is consistently missing from lo-fi → that always needs to be inferred?
+- Does the FigJam `get_figjam` MCP read provide enough to write accurate BRIEFs, or do we always need the hi-fi design file too? → **Answered**: Sufficient for structure and layout; insufficient for colors, spacing, animation timing. Hi-fi needed for visual polish only.
+- Do FigJam shape type names (`MANUAL_INPUT`, `DOCUMENT_SINGLE`, `INTERNAL_STORAGE`) give useful semantic hints to the implementing agent? → **Answered**: Yes — reliably for `MANUAL_INPUT` and `INTERNAL_STORAGE`. See `figjam-shape-type-semantics.md`.
+- Does "Chaos Curated" vs "Chaos Toned Down" as a descriptor produce a visible design difference in output? → **Answered**: Yes — produced distinct layouts, palettes, and densities with no explicit layout spec. See `mode-personality-palette-density.md`.
+- What information is consistently missing from lo-fi that always needs to be inferred? → **Answered**: Colors (hex/tokens), spacing values, font sizes, border-radius, animation timing/easing. Structure is covered; visual parameters are not.
 
 ---
 
@@ -97,3 +105,5 @@ The 6-screen flow: Mode Picker → App Connect → Glow-Up Transition → Sprite
 | 2026-03-20 | NASI FigJam board pulled via MCP. 6 experiments scaffolded. S-001 and S-002 drafted. 6 tickets created. T-001-01 and T-001-02 picked up by Lisa immediately (now in research phase). |
 | 2026-03-20 | T-001-01: Full RDSPI cycle complete. NasiModePicker.tsx implemented — welcome card + 3 mode cards (Loom/Sprite/Shell). tsconfig updated to include experiments/. Awaiting npm install + visual review. |
 | 2026-03-23 | T-001-02: Full RDSPI cycle complete. NasiAppConnect.tsx + ModeTabBar + AppTile implemented. Visual review passed for both 001 and 002. Retros written. Experiments 001 and 002 marked complete (Pass). |
+| 2026-03-23 | Wave 1 complete. T-002-01 through T-002-04 implemented: NasiGlowUp (glow-pulse keyframe), NasiSpriteDashboard (mixed-width chaos grid), NasiShellDashboard (single-col calm layout + ModeTabBar ACTIVE_COLORS fix), NasiLoomDashboard (7-section work dashboard). All 6 screens live. TypeScript 0 errors. |
+| 2026-03-23 | Retros written for all 6 experiments (all Pass). 3 techniques extracted: chaos-grid-col-span, mode-personality-palette-density, figjam-shape-type-semantics. All 4 sprint open questions answered. ROADMAP Key Findings populated. |

@@ -7,3 +7,14 @@
   75%  { transform: scale(0.97); }
   100% { opacity: 1; transform: scale(1.0); }
 }
+
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 30px 10px rgba(244, 63, 94, 0.4),
+                0 0 60px 20px rgba(244, 63, 94, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 60px 20px rgba(244, 63, 94, 0.7),
+                0 0 100px 40px rgba(244, 63, 94, 0.3);
+  }
+}

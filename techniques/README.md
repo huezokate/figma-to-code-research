@@ -4,11 +4,9 @@ Extracted, named findings from completed experiments. Each file is a reusable in
 
 ## Index
 
-<!-- Add entries here as techniques are extracted. Format:
-- [technique-name.md](./technique-name.md) — one-line summary
--->
-
-*No techniques yet. They emerge from experiment retros.*
+- [chaos-grid-col-span.md](./chaos-grid-col-span.md) — Editorial "chaos" grid using `grid-cols-2` with alternating `col-span-2` and varied card heights
+- [mode-personality-palette-density.md](./mode-personality-palette-density.md) — Express opposite mode personalities through palette + layout density alone, same component structure
+- [figjam-shape-type-semantics.md](./figjam-shape-type-semantics.md) — FigJam shape type names (`MANUAL_INPUT`, `INTERNAL_STORAGE`, `DOCUMENT_SINGLE`) reliably predict UI section role
 
 ---
 

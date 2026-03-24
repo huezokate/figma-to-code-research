@@ -1,16 +1,15 @@
 ---
 export const prerender = true;
 import ExperimentLayout from '../../../layouts/ExperimentLayout.astro';
-// import NasiLoomDashboard from '../../../../experiments/006-nasi-loom-dashboard/src/NasiLoomDashboard';
+import NasiLoomDashboard from '../../../../experiments/006-nasi-loom-dashboard/src/NasiLoomDashboard';
 
-const status = 'in-progress';
+const status = 'complete';
 ---
 
 <ExperimentLayout experimentId="006" title="NASI Loom Dashboard" status={status}>
   <div class="flex justify-center">
-    <div class="w-[390px] rounded-2xl border bg-white p-4 shadow-sm">
-      <p class="text-center text-sm text-gray-400">Component not yet implemented.</p>
-      <p class="mt-1 text-center text-xs text-gray-300">See experiments/006-nasi-loom-dashboard/</p>
+    <div class="w-[390px] h-[844px] overflow-hidden rounded-3xl shadow-2xl">
+      <NasiLoomDashboard client:load />
     </div>
   </div>
 </ExperimentLayout>

@@ -3,8 +3,8 @@ export interface ModeTabBarProps {
 }
 
 const TABS: { id: 'sprite' | 'loom' | 'shell'; label: string }[] = [
-  { id: 'sprite', label: 'Sprite' },
   { id: 'loom', label: 'Loom' },
+  { id: 'sprite', label: 'Sprite' },
   { id: 'shell', label: 'Shell' },
 ];
 
@@ -14,7 +14,7 @@ const ACTIVE_COLORS: Record<'sprite' | 'loom' | 'shell', string> = {
   shell:  'bg-gray-500',
 };
 
-export default function ModeTabBar({ activeTab = 'sprite' }: ModeTabBarProps) {
+export default function ModeTabBar({ activeTab = 'loom' }: ModeTabBarProps) {
   return (
     <nav className="flex gap-2 px-4 py-3 bg-white border-b border-gray-200">
       {TABS.map((tab) =>
