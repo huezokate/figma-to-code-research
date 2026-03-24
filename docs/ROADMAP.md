@@ -27,8 +27,8 @@
 
 | ID | Component | Lisa Ticket | Status | Pass/Partial/Miss | Technique Extracted |
 |----|-----------|-------------|--------|-------------------|---------------------|
-| 001 | NASI Mode Picker (Screen 1) | T-001-01 | in-progress | — | — |
-| 002 | NASI App Connect (Screen 2) | T-001-02 | in-progress | — | — |
+| 001 | NASI Mode Picker (Screen 1) | T-001-01 | complete | Pass | — |
+| 002 | NASI App Connect (Screen 2) | T-001-02 | complete | Pass | ModeTabBar reusable component pattern |
 | 003 | NASI Glow-Up (Screen 3) | T-002-01 | queued | — | — |
 | 004 | NASI Sprite Dashboard (Screen 4) | T-002-02 | queued | — | — |
 | 005 | NASI Shell Dashboard (Screen 5) | T-002-03 | queued | — | — |
@@ -95,3 +95,5 @@ The 6-screen flow: Mode Picker → App Connect → Glow-Up Transition → Sprite
 |------|--------------|
 | 2026-03-20 | Project scaffolded. Lisa initialized. Cloudflare deployment configured. ROADMAP.md established. |
 | 2026-03-20 | NASI FigJam board pulled via MCP. 6 experiments scaffolded. S-001 and S-002 drafted. 6 tickets created. T-001-01 and T-001-02 picked up by Lisa immediately (now in research phase). |
+| 2026-03-20 | T-001-01: Full RDSPI cycle complete. NasiModePicker.tsx implemented — welcome card + 3 mode cards (Loom/Sprite/Shell). tsconfig updated to include experiments/. Awaiting npm install + visual review. |
+| 2026-03-23 | T-001-02: Full RDSPI cycle complete. NasiAppConnect.tsx + ModeTabBar + AppTile implemented. Visual review passed for both 001 and 002. Retros written. Experiments 001 and 002 marked complete (Pass). |
